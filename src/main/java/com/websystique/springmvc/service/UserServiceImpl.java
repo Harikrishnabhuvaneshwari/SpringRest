@@ -14,14 +14,19 @@ import com.websystique.springmvc.model.User;
 @Transactional
 public class UserServiceImpl implements UserService{
 	
-	private static final AtomicLong counter = new AtomicLong();
+	private static AtomicLong counter = new AtomicLong();
 	
 	private static List<User> users;
+	
+	public UserServiceImpl(List<User> users) {
+		UserServiceImpl.users=users;
+		counter=new AtomicLong();
+	}
 	
 	static{
 		users= populateDummyUsers();
 	}
-
+	
 	public List<User> findAllUsers() {
 		return users;
 	}
